@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import EmailInput from './emailInput.js';
-import PasswordInput from "./passwordInput.js";
-import FormContainer from "./formContainer.js"
+import LoginPage from "./components/functionalForm.js"
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <FormContainer />
+    <LoginPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
