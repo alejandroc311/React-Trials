@@ -29,22 +29,6 @@ function LoginPage() {
     return match ? match[1] : null;
 }
 
-  function checkIfUserInToken(){
-    fetch("https://flpnmoyvhe.execute-api.us-east-1.amazonaws.com/platformTesting/cookiecheck", {
-      method: "POST",
-      credentials: "include",
-      headers: {},
-      body: JSON.stringify("Just sending a cookie!")
-      })
-      .then(serverResponse => serverResponse.json())
-      .then(data => {
-        console.log("Fetch API Reached Lambda in Gateway API and returned the following: ", data);
-      })
-      .catch(error => {
-        console.log("Fetch API did NOT reach Lambda in Gateway API and returned the following: ", error.description);
-      });
-  }
-
   function sendCookie(event){
     event.preventDefault();
     console.log("Entered sendCookie function.");
