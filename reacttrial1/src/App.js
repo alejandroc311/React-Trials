@@ -16,7 +16,7 @@ function App(){
     return(
 
       <Router>
-      <UserStoredInContext.Provider value={{user, setUser, isLoading}}>
+      <UserStoredInContext.Provider value={{user, setUser, isLoading, setLoading}}>
           <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route path="/login" component={LoginPage}/>
