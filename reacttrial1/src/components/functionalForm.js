@@ -51,6 +51,7 @@ function LoginPage() {
       console.log("Fetch API Reached Lambda in Gateway and returned this response: ", parsedData);
       setUser({...parsedData});
       console.log("inside login page function", user);
+      return(<Redirect to="/profile"/>);
     })
     .catch(error => {
       console.log("Fetch API failed and returned this error:", error);
