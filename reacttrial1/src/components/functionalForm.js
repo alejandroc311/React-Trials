@@ -12,6 +12,7 @@ import { createContext, useContext } from 'react';
 function LoginPage() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [isLoggedIn, setLogin] = React.useState(false);
   const [isFormValid, setIsFormValid] = React.useState(false);
   const {user, setUser, isLoading, setLoading} = useContext(UserStoredInContext);
   React.useEffect(() => {console.log(email); isFormSubmittable()}, [email, password, isFormValid]);
@@ -55,22 +56,27 @@ function LoginPage() {
     })
     .then(()=>{
       console.log("Before being redirected to the profile page");
-      return(<Redirect to="/profile"/>);
+      setLogin(true);
     })
     .catch(error => {
       console.log("Fetch API failed and returned this error:", error);
     });
   }
 
-
-
-  return (
+  if(!isLoggedIn){
+   return (
     <form onSubmit={e => sendCookieOnSubmit(e)}>
       <FunctionalEmailInput email={email} onInputChange={handleInputChange} />
       <FunctionalPasswordInput password={password} onInputChange={handleInputChange}/>
       <FunctionalButton isButtonEnabled={isFormValid} />
     </form>
-  );
+  );  
+ } 
+  else if(isLoggedIn){
+   return(<Redirect to="/profile"/>);
+  }
+
+  
 }
 
 export default LoginPage;
