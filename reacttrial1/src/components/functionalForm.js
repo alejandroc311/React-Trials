@@ -13,7 +13,7 @@ function LoginPage() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isFormValid, setIsFormValid] = React.useState(false);
-  const {user, setUser, isLoading} = useContext(UserStoredInContext);
+  const {user, setUser, isLoading, setLoading} = useContext(UserStoredInContext);
   React.useEffect(() => {console.log(email); isFormSubmittable()}, [email, password, isFormValid]);
 
   function handleInputChange(name, value) {
@@ -50,6 +50,7 @@ function LoginPage() {
     .then(parsedData => {
       console.log("Fetch API Reached Lambda in Gateway and returned this response: ", parsedData);
       setUser({...parsedData});
+      setLoading(false);
       console.log("inside login page function", user);
       return(<Redirect to="/profile"/>);
     })
