@@ -11,7 +11,7 @@ import LandingPage from "./components/landingPage.js";
 import ProfilePage from "./components/profilePage.js";
 
 function App(){
-  const {user, setUser, isLoading} = useGetUser();
+  const {user, setUser, isLoading, setLoading} = useGetUser();
   console.log("Inside App Function/Component", user);
     return(
 
