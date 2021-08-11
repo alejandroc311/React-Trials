@@ -12,15 +12,15 @@ function LandingPage(){
       <Loading/>
     );
   }
-  else if(user){
+  else if(Object.keys(user).length === 0){
     console.log("Inside true for User Object Check");
     return (
-      <Redirect to="/profile"/>
+      <Redirect to="/login"/>
     );
   }
-  else{
+  else if(user){
     console.log("Inside nothing was True");
-    return (<Redirect to='/login'/>);
+    return (<Redirect to='/profile'/>);
   }
 }
 export default LandingPage;
