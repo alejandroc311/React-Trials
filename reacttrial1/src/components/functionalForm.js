@@ -52,6 +52,9 @@ function LoginPage() {
       setUser({...parsedData});
       setLoading(false);
       console.log("inside login page function", user);
+    })
+    .then(()=>{
+      console.log("Before being redirected to the profile page");
       return(<Redirect to="/profile"/>);
     })
     .catch(error => {
