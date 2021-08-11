@@ -18,7 +18,7 @@ function LandingPage(){
       <Redirect to="/profile"/>
     );
   }
-  else {
+  else{
     console.log("Inside nothing was True");
     return (<Redirect to='/login'/>);
   }
