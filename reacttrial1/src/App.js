@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import useGetUser from "./hooks/useGetUser.js";
 import { UserStoredInContext } from './hooks/UserContext';
 import PrivateRoute from "./components/privateRoute.js";
-import LandingPage from "./components/landingPage";
+import LandingPage from "./components/landingPage.js";
 import ProfilePage from "./components/profilePage.js";
 
 function App(){

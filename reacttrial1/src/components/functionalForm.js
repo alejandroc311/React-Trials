@@ -49,8 +49,7 @@ function LoginPage() {
     .then(serverResponse => serverResponse.json())
     .then(parsedData => {
       console.log("Fetch API Reached Lambda in Gateway and returned this response: ", parsedData);
-      setUser({parsedData});
-      alert(parsedData);
+      setUser({...parsedData});
       console.log("inside login page function", user);
     })
     .catch(error => {

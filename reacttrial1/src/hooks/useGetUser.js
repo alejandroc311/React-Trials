@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function useGetUser(){
   const [user, setUser] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     function getUser(){
       fetch(
@@ -16,21 +16,20 @@ export default function useGetUser(){
       .then(serverResponse => serverResponse.json())
       .then(parsedData => {
         console.log("Fetch API in useGetUser Hook reached Lambda in Gateway and returned this response: ", parsedData);
-        alert(parsedData);
         setUser({...parsedData});
         setLoading(false);
       })
       .catch(error => {
-        console.log("Fetch API useGetUser Hook failed and returned this error:", error);
+        console.log("Fetch API in useGetUser Hook failed and returned this error:", error);
         setLoading(false);
       });
     }
     getUser();
 
   }, []);
-  return{
+  return({
     user,
     setUser,
     isLoading
-  }
+  });
 }

@@ -6,16 +6,20 @@ import { useContext } from 'react';
 function LandingPage(){
   const {user, isLoading} = useContext(UserStoredInContext);
   if(isLoading) {
+    console.log("Inside true isLoading Check");
+
     return (
       <Loading/>
     );
   }
-  if({user}){
+  else if(user){
+    console.log("Inside true for User Object Check");
     return (
       <Redirect to="/profile"/>
     );
   }
   else {
+    console.log("Inside nothing was True");
     return (<Redirect to='/login'/>);
   }
 }
