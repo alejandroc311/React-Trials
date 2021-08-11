@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LoginPage from "./components/functionalForm.js"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LoginPage from "./components/functionalForm.js";
 import reportWebVitals from './reportWebVitals';
+import useGetUser from "./hooks/useGetUser.js";
+import App from "./App.js"
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginPage />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
