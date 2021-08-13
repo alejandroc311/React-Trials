@@ -13,7 +13,8 @@ function LoginPage() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isFormValid, setIsFormValid] = React.useState(false);
-  const {user, setUser, isLoading} = useContext(UserStoredInContext);
+  const [isLoggedIn, setLogin] = React.useState(false);
+  const {user, setUser, isLoading, setLoading} = useContext(UserStoredInContext);
   React.useEffect(() => {console.log(email); isFormSubmittable()}, [email, password, isFormValid]);
 
   function handleInputChange(name, value) {
@@ -50,15 +51,25 @@ function LoginPage() {
     .then(parsedData => {
       console.log("Fetch API Reached Lambda in Gateway and returned this response: ", parsedData);
       setUser({...parsedData});
-      console.log("inside login page function", user);
+      setLoading(false);
+      console.log("Inside success Fetch callback for Login Page", user);
+    })
+    .then(()=>{
+      console.log("Before being redirected to the profile page");
+      setLogin(true);
     })
     .catch(error => {
       console.log("Fetch API failed and returned this error:", error);
     });
   }
 
+  while (isLoading){
+    return(
+     <Loading/>
+   );
+  }
 
-
+  if(!isLoggedIn || Object.keys(user).length === 0){
   return (
     <form onSubmit={e => sendCookieOnSubmit(e)}>
       <FunctionalEmailInput email={email} onInputChange={handleInputChange} />
@@ -66,6 +77,14 @@ function LoginPage() {
       <FunctionalButton isButtonEnabled={isFormValid} />
     </form>
   );
+}
+  else if(isLoggedIn){
+   return(<Redirect to="/profile"/>);
+  }
+  else if(user){
+    console.log("Inside found User Object in Landing Page");
+    return (<Redirect to='/profile'/>);
+  }
 }
 
 export default LoginPage;

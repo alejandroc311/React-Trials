@@ -4,22 +4,23 @@ import { UserStoredInContext } from "../hooks/UserContext.js";
 import Loading from './Loading.js';
 
 function PrivateRoute(props){
-  const {user, isLoading} = useContext(UserStoredInContext);
+  const {user, isLoading, setLoading} = useContext(UserStoredInContext);
   const { component: Component, ...rest } = props;
   if(isLoading) {
     return (
       <Loading/>
     );
   }
-  if({user}){
-    return (
-      <Route {...rest} render={(props) => (<Component {...props}/>)}/>
+
+  else if(Object.keys(user).length === 0){
+    return(
+      <Redirect to="/login"/>
     );
   }
-  else {
+  else if(user) {
     return (
-      <Redirect to='/login'/>
-    );
-  }
+        <Route {...rest} render={(props) => (<Component {...props}/>)}/>
+      );
+    }
 }
 export default PrivateRoute;

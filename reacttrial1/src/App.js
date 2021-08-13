@@ -11,12 +11,12 @@ import LandingPage from "./components/landingPage.js";
 import ProfilePage from "./components/profilePage.js";
 
 function App(){
-  const {user, setUser, isLoading} = useGetUser();
+  const {user, setUser, isLoading, setLoading} = useGetUser();
   console.log("Inside App Function/Component", user);
     return(
 
       <Router>
-      <UserStoredInContext.Provider value={{user, setUser, isLoading}}>
+      <UserStoredInContext.Provider value={{user, setUser, isLoading, setLoading}}>
           <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route path="/login" component={LoginPage}/>

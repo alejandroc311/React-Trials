@@ -30,6 +30,7 @@ export default function useGetUser(){
   return({
     user,
     setUser,
-    isLoading
+    isLoading,
+    setLoading
   });
 }
